@@ -1,6 +1,0 @@
-#+title: box
-#+description: CC Boxes
-This repository contains 'box' configuration and setup scripts.
-
-A box is a VM image, usually ran with QEMU/KVM. In the next iteration
-we will begin using the BOX lisp system from the core.
