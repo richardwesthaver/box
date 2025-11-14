@@ -1,0 +1,2 @@
+.*[.](fasl|fsys|zst|iso|fd)$
+[.]stash/.*
