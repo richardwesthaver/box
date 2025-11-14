@@ -1,4 +1,5 @@
 ;;; releng.box --- Releng Archiso Config -*- mode:skel -*-
+:type :archiso
 :arch "x86_64"
 :hostname "releng"
 :iso-name "archlinux"
