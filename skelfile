@@ -6,7 +6,8 @@
 :vc (:hg "https://vc.compiler.company/infra/box")
 :components 
 ((:box "baseline")
- (:box "releng"))
+ (:box "releng")
+ (:box "core"))
 :rules 
 ((arm (alarm edk2-arm))
  (alarm ()
@@ -15,4 +16,7 @@
    ".stash/alarm-aarch64.tar.gz"))
  (edk2-arm ()
   (req:fetch "https://github.com/retrage/edk2-nightly/raw/refs/heads/master/bin/RELEASEAARCH64_QEMU_EFI.fd"
-   ".stash/AARCH64_QEMU_EFI.fd")))
+   ".stash/AARCH64_QEMU_EFI.fd"))
+ (core ()
+  (with-sudo
+   "mkarchiso -o .stash/out -w .stash/work .stash/core")))
