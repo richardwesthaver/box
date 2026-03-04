@@ -7,7 +7,8 @@
 :components 
 ((:box "baseline")
  (:box "releng")
- (:box "core"))
+ (:box "core")
+ (:box "web"))
 :rules 
 ((arm (alarm edk2-arm))
  (alarm ()

@@ -1,0 +1,23 @@
+;;; web.box --- Web Box Config -*- mode:skel -*-
+
+;; This box supplies our full web server infrastructure. Web routes are served
+;; via Caddy and multiple podman containers server our web applications.
+:type :archiso
+:arch "x86_64"
+:hostname "web"
+:iso-name "weblinux"
+:iso-publisher "The Compiler Company <https://compiler.company>"
+:iso-application "Web Linux Live/Rescue DVD"
+:iso-version "$(date --date=\"@${SOURCE_DATE_EPOCH:-$(date +%s)}\" +%Y.%m.%d)"
+:install-dir "arch"
+:buildmodes (:iso)
+:bootmodes (:bios.syslinux :uefi.systemd-boot)
+:airootfs-image-type "squashfs"
+:airootfs-image-tool-options 
+("-comp" "xz" "-Xbcj" "x86" "-b" "1M" "-Xdict-size" "1M")
+:bootstrap-tarball-compression 
+("zstd" "-c" "-T0" "--auto-threads=logical" "--long" "-19")
+:file-permissions ()
+:pacman-conf #P"/usr/share/archiso/configs/baseline/pacman.conf"
+:bootstrap-packages (arch-install-scripts base)
+:packages (sudo xdg-utils openssh linux linux-firmware intel-ucode syslinux go podman)
