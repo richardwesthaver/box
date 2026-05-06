@@ -7,6 +7,7 @@
 :iso-publisher "Arch Linux <https://archlinux.org>"
 :iso-application "Arch Linux Live/Rescue DVD"
 :iso-version "$(date --date=\"@${SOURCE_DATE_EPOCH:-$(date +%s)}\" +%Y.%m.%d)"
+:airootfs "/usr/share/archiso/configs/baseline/airootfs/"
 :install-dir "arch"
 :buildmodes (:iso)
 :bootmodes (:bios.syslinux :uefi.systemd-boot)

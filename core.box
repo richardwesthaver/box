@@ -13,12 +13,30 @@
 :install-dir "arch"
 :buildmodes (:iso)
 :bootmodes (:bios.syslinux :uefi.systemd-boot)
+:airootfs "rootfs/"
 :airootfs-image-type "squashfs"
 :airootfs-image-tool-options 
 ("-comp" "xz" "-Xbcj" "x86" "-b" "1M" "-Xdict-size" "1M")
 :bootstrap-tarball-compression 
 ("zstd" "-c" "-T0" "--auto-threads=logical" "--long" "-19")
-:file-permissions ()
+:file-permissions
+(("/etc/shadow" . "0:0:400")
+ ("/root" . "0:0:750")
+ ("/root/.gnupg" . "0:0:700"))
 :pacman-conf #P"/usr/share/archiso/configs/baseline/pacman.conf"
 :bootstrap-packages (arch-install-scripts base)
-:packages (sudo xdg-utils openssh linux linux-firmware intel-ucode syslinux)
+:packages 
+(base linux linux-atm linux-firmware
+ amd-ucode intel-ucode ldns less
+ syslinux sudo xdg-utils openssh 
+ mkinitcpio mkinitcpio-archiso iw iwd
+ cloud-init btrfs-progs efibootmgr kitty-terminfo
+ tmux vim xdg-utils xfsprogs 
+ squashfs-tools lftp hyperv nbd
+ nmap nvme-cli open-iscsi man-db
+ man-pages lvm2 gptfdisk edk2-shell
+ dhcpcd dmraid dnsmasq dosfstools
+ dmidecode archinstall arch-install-scripts cryptsetup
+ e2fsprogs ethtool exfatprogs f2fs-tools 
+ gpm memtest86+-efi nfs-utils)
+

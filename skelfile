@@ -18,6 +18,25 @@
  (edk2-arm ()
   (req:fetch "https://github.com/retrage/edk2-nightly/raw/refs/heads/master/bin/RELEASEAARCH64_QEMU_EFI.fd"
    ".stash/AARCH64_QEMU_EFI.fd"))
- (core ()
+ (baseline ()
+  ;; (component ...)
+  (obj:build (obj:load-config :archiso #p"baseline.box") :path ".stash/baseline")
   (with-sudo
-   "mkarchiso -o .stash/out -w .stash/work .stash/core")))
+   "mkarchiso -v -o .stash/out -w .stash/baseline/work .stash/baseline"))
+ (releng ()
+  ;; (component ...)
+  (obj:build (obj:load-config :archiso #p"releng.box") :path ".stash/releng")
+  (with-sudo
+   "mkarchiso -v -o .stash/out -w .stash/releng/work .stash/releng"))
+ (run-arch ()
+  (box:run-archiso (namestring (car (directory-files ".stash/out/archlinux")))))
+ (core ()
+  ;; (component ...)
+  (obj:build (obj:load-config :archiso #p"core.box") :path ".stash/core")
+  ;; provision rootfs..
+  ;; arch-chroot - default passwords, cloud-init, users, home config
+  (with-sudo
+   "mkarchiso -v -o .stash/out -w .stash/core/work .stash/core"))
+ (run-core ()
+  (box:run-archiso (namestring (car (directory-files ".stash/out/corelinux"))))))
+
