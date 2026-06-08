@@ -1,0 +1,3 @@
+;;; worker.box --- Worker Box Config
+:type :qemu-system
+:target :x64

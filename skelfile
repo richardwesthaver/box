@@ -7,8 +7,9 @@
 :components 
 ((:box "baseline")
  (:box "releng")
- (:box "core")
- (:box "web"))
+ (:box "coreiso")
+ (:box "webiso")
+ (:box "worker"))
 :rules 
 ((arm (alarm edk2-arm))
  (alarm ()
@@ -20,23 +21,23 @@
    ".stash/AARCH64_QEMU_EFI.fd"))
  (baseline ()
   ;; (component ...)
-  (obj:build (obj:load-config :archiso #p"baseline.box") :path ".stash/baseline")
+  (build (obj:load-config :archiso #p"baseline.box") :path ".stash/baseline")
   (with-sudo
    "mkarchiso -v -o .stash/out -w .stash/baseline/work .stash/baseline"))
  (releng ()
   ;; (component ...)
-  (obj:build (obj:load-config :archiso #p"releng.box") :path ".stash/releng")
+  (build (obj:load-config :archiso #p"releng.box") :path ".stash/releng")
   (with-sudo
    "mkarchiso -v -o .stash/out -w .stash/releng/work .stash/releng"))
  (run-arch ()
-  (box:run-archiso (namestring (car (directory-files ".stash/out/archlinux")))))
- (core ()
+  (run-archiso (namestring (car (directory-files ".stash/out/archlinux")))))
+ (coreiso ()
   ;; (component ...)
-  (obj:build (obj:load-config :archiso #p"core.box") :path ".stash/core")
+  (build (obj:load-config :archiso #p"coreiso.box") :path ".stash/coreiso")
   ;; provision rootfs..
   ;; arch-chroot - default passwords, cloud-init, users, home config
   (with-sudo
-   "mkarchiso -v -o .stash/out -w .stash/core/work .stash/core"))
- (run-core ()
-  (box:run-archiso (namestring (car (directory-files ".stash/out/corelinux"))))))
+   "mkarchiso -v -o .stash/out -w .stash/coreiso/work .stash/coreiso"))
+ (run-coreiso ()
+  (run-archiso (namestring (car (directory-files ".stash/out/coreiso"))))))
 

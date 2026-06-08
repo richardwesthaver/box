@@ -4,9 +4,8 @@
 ;; dependencies are supplied to support running the CORE as PID0
 ;; (init)
 :type :archiso
-:arch "x86_64"
-:hostname "core"
-:iso-name "corelinux"
+:hostname "coreiso"
+:iso-name "coreiso"
 :iso-publisher "The Compiler Company <https://compiler.company>"
 :iso-application "Core Linux Live/Rescue DVD"
 :iso-version "$(date --date=\"@${SOURCE_DATE_EPOCH:-$(date +%s)}\" +%Y.%m.%d)"

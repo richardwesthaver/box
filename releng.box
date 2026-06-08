@@ -1,6 +1,6 @@
 ;;; releng.box --- Releng Archiso Config -*- mode:skel -*-
 :type :archiso
-:arch "x86_64"
+:target :x64
 :hostname "releng"
 :iso-name "archlinux"
 :iso-label "ARCH_$(date --date=\"@${SOURCE_DATE_EPOCH:-$(date +%s)}\" +%Y%m)"

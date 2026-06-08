@@ -1,6 +1,6 @@
 ;;; baseline.box --- Baseline Archiso config -*- mode:skel -*-
 :type :archiso
-:arch "x86_64"
+:target :x64
 :hostname "baseline"
 :iso-name "archlinux"
 :iso-label "ARCH_$(date --date=\"@${SOURCE_DATE_EPOCH:-$(date +%s)}\" +%Y%m)"

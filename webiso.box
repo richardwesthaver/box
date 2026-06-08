@@ -1,9 +1,8 @@
 ;;; web.box --- Web Box Config -*- mode:skel -*-
 
 ;; This box supplies our full web server infrastructure. Web routes are served
-;; via Caddy and multiple podman containers server our web applications.
+;; via Caddy.
 :type :archiso
-:arch "x86_64"
 :hostname "web"
 :iso-name "weblinux"
 :iso-publisher "The Compiler Company <https://compiler.company>"
